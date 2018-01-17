@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_margin"
+    tools:ignore="MissingPrefix"
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:background="@drawable/back_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/margin"
+        android:paddingTop="@dimen/half_margin"
+        android:paddingBottom="@dimen/half_margin"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/relativeLayout">
+
+        <TextView
+            android:id="@+id/textViewTimes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            fontPath="fonts/Montserrat-Regular.ttf"
+            android:textSize="16sp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewTimes"
+            fontPath="fonts/Montserrat-Bold.ttf"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="TextView"
+            />
+
+        <TextView
+            android:id="@+id/textViewVenue"
+            android:layout_below="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            fontPath="fonts/Montserrat-Regular.ttf"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="TextView" />
+
+        <ImageView
+            android:id="@+id/imageViewArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin"
+            card_view:srcCompat="@drawable/right_chevron_android" />
+    </RelativeLayout>
+        <View
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignTop="@+id/relativeLayout"
+            android:layout_alignBottom="@+id/relativeLayout"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:background="#77CCCCCC">
+
+        </View>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

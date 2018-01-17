@@ -1,0 +1,51 @@
+[
+  {
+    "title": "Welcoming and registration",
+    "startTime": "6:30PM",
+    "endTime": "7:10PM",
+    "venue": "Stateside Agency"
+  },
+  {
+    "title": "Conference #1",
+    "startTime": "7:15PM",
+    "endTime": "7:45PM",
+    "venue": "3rd floor",
+    "description": "<b>Title:</b> Beacons <br><b>Speaker:</b> Ricardo Alvarado | iOS Stateside’s Tech Lead <br><b>Description:</b> Learn what&apos;s a beacon, and how can we use them to solve different<br>problems."
+  }, {
+  "title": "Catering service",
+  "startTime": "7:50PM",
+  "endTime": "8:10PM",
+  "venue": "2nd floor"
+},
+  {
+    "title": "Conference #2",
+    "startTime": "8:15PM",
+    "endTime": "8:45PM",
+    "venue": "3rd floor",
+    "description": "<b>Title:</b>Intro to RxSwift<br><b>Speaker:</b> Esteban Chavarría Solano | iOS Tech Lead with 6 years of experience.<br><b>Description:</b> Introduction to Reactive programming with RxSwift, reviewing coreconcepts of RxSwift and showing some useful examples on how to use it."
+  }, {
+  "title": "Music",
+  "startTime": "8:50PM",
+  "endTime": "9:00PM",
+  "venue": "3rd floor",
+  "description": "<b>Performer:</b> Guido Fernández"
+}, {
+  "title": "First round of prizes",
+  "startTime": "9:00PM",
+  "endTime": "9:10PM",
+  "venue": "3rd floor",
+  "description": "<b>We are giving away these amazing prizes:</b> <br><b>• Prize #1:Kindle</b> <br><b>• Prize #2: Echo Dot</b> <br>Good Luck!"
+}, {
+  "title": "Conference #3",
+  "startTime": "9:15PM",
+  "endTime": "9:45PM",
+  "venue": "3rd floor",
+  "description": "<b>Title:</b> How to reach your first 100K downloads organically<br><b>Speaker:</b> Randy Saborío | Android Stateside’s Tech Lead<br><b>Description:</b> Memorigi is a different, beautiful todo list, task planner, and reminder app made 100% in Costa Rica. It’s located within the top 10 apps (#8) for ‘todo’ search term in Google Play Store next to enterprise apps like Wunderlist (#5), Any.do (#6), and TickTickTick (#7), beating Trello (#11), GTasks (#12), and Evernote (#13).<br>In this keynote you’ll learn how to reach thousands of downloads for your app and how to keep your user base growing consistently and organically."
+}, {
+  "title": "Final prize",
+  "startTime": "9:50PM",
+  "endTime": "10:00PM",
+  "venue": "3rd floor",
+  "description": "<b>We are giving away our final prize:</b> a Raspberry Pi 3! <br>Good Luck! and Thanks for coming!"
+}
+]
