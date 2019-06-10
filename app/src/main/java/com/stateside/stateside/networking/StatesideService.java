@@ -14,12 +14,24 @@ public interface StatesideService {
     @FormUrlEncoded
     @POST("user")
     Call<NewUserResponse> newUser (@Header("Authorization") String token,
-                                   @Field("name") String name, @Field("last_name") String lastname,
-                                   @Field("phone")String phone);
+                                   @Field("fullName") String fullName,
+                                   @Field("jobTitle") String jobTitle,
+                                   @Field("level") String level,
+                                   @Field("email") String email,
+                                   @Field("phone") String phone
+    );
 
     @FormUrlEncoded
-    @POST("searchwinner")
-    Call<GanadorResponse> getGanador (@Header("Authorization") String token,
-                                      @Field("phone") String phone);
+    @POST("currentChat")
+    Call<GanadorResponse> getCurrentChat (@Header("Authorization") String token);
+
+    @FormUrlEncoded
+    @POST("getWinner")
+    Call<GanadorResponse> getWinner (@Header("Authorization") String token);
+
+    @FormUrlEncoded
+    @POST("checkIn")
+    Call<GanadorResponse> checkIn (@Header("Authorization") String token,
+                                   @Field("id") String id);
 
 }

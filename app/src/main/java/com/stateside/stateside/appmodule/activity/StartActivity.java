@@ -1,10 +1,13 @@
 package com.stateside.stateside.appmodule.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.stateside.stateside.R;
+import com.stateside.stateside.appmodule.fragment.SplashFragment;
+import com.stateside.stateside.appmodule.fragment.WelcomeFragment;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class StartActivity extends BaseClass {
 
@@ -12,14 +15,21 @@ public class StartActivity extends BaseClass {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        findViewById(R.id.buttonEnter).setOnClickListener(new View.OnClickListener() {
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new SplashFragment())
+                .commit();
+
+        new Timer().schedule(new TimerTask() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, MainActivity.class);
-                startActivity(intent);
+            public void run() {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                        .replace(R.id.fragment_container, new WelcomeFragment())
+                        .commitAllowingStateLoss();
             }
-        });
-
+        }, 2000);
     }
-
 }

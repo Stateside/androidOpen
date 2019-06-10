@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.stateside.stateside.R;
+import com.stateside.stateside.appmodule.fragment.HomeFragment;
 import com.stateside.stateside.appmodule.fragment.ScheduleFragment;
 import com.stateside.stateside.information.Event;
 
@@ -22,9 +23,9 @@ import java.util.GregorianCalendar;
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHolder> {
     Event[] events;
     Context context;
-    ScheduleFragment scheduleFragment;
+    HomeFragment scheduleFragment;
 
-    public ScheduleAdapter(Event[] events, ScheduleFragment scheduleFragment) {
+    public ScheduleAdapter(Event[] events, HomeFragment scheduleFragment) {
         this.events = events;
         this.scheduleFragment = scheduleFragment;
     }

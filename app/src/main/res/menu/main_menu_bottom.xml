@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_home"
+        android:title=""
+        android:icon="@drawable/ic_home_menu"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/action_prizes"
+        android:title=""
+        android:icon="@drawable/ic_prizes_menu"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/action_register"
+        android:title=""
+        android:icon="@drawable/ic_signup_menu"
+        app:showAsAction="ifRoom"/>
+</menu>

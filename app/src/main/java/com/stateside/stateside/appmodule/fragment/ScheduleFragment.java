@@ -49,7 +49,7 @@ public class ScheduleFragment extends BaseFragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerSchedule);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new ScheduleAdapter(getEvents(), this));
+        //recyclerView.setAdapter(new ScheduleAdapter(getEvents(), this));
         return view;
     }
 

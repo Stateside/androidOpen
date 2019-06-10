@@ -1,61 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:ignore="MissingPrefix"
-    tools:context="com.stateside.stateside.appmodule.activity.StartActivity">
+    android:id="@+id/fragment_container">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/night" />
-
-    <Button
-        android:id="@+id/buttonEnter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
-        android:paddingHorizontal="@dimen/horizontal_padding"
-        android:background="@drawable/round_shape_button"
-        android:textColor="@color/white"
-        fontPath="fonts/Montserrat-Bold.ttf"
-        android:text="Enter"
-         />
-
-    <TextView
-        android:id="@+id/textViewWelcomeCopy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewWelcomeTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:gravity="center"
-        android:text="@string/welcome_copy"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        fontPath="fonts/Montserrat-Regular.ttf"/>
-
-    <TextView
-        android:id="@+id/textViewWelcomeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/imageView"
-        android:layout_marginTop="30dp"
-        android:textSize="22sp"
-        android:textColor="@color/white"
-        android:text="Welcome"
-        fontPath="fonts/Montserrat-Regular.ttf"/>
-</RelativeLayout>
+</FrameLayout>

@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true">
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerSchedule"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_width="match_parent"/>
+
     <android.support.v7.widget.CardView android:id="@+id/info"
         android:visibility="gone"
         android:layout_width="match_parent"
@@ -31,7 +33,6 @@
                 android:layout_alignParentTop="true"
                 android:textColor="@color/colorAccent"
                 android:textSize="17sp"
-                fontPath="fonts/Montserrat-Bold.ttf"
                 android:layout_margin="@dimen/half_margin"
                 android:text="TextView" />
 
@@ -44,7 +45,6 @@
                 android:textColor="@color/black"
                 android:layout_below="@+id/textViewTitle"
                 android:layout_marginTop="@dimen/half_margin"
-                fontPath="fonts/Montserrat-Regular.ttf"
                 android:text="TextView" />
 
         </RelativeLayout>

@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">Stateside</string>
     <string name="location_copy">Barrio Tournón, Edificio \nConsultécnica, 3er Piso \nSan José, Costa Rica\n(506) 2221 8320</string>
-    <string name="name">Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="phone">Phone</string>
+    <string name="full_name">Full Name</string>
+    <string name="job_title">Job Title</string>
+    <string name="level">Level (eg. Junior, Mid, Senior or Lead)</string>
+    <string name="email">E-mail</string>
+    <string name="phone">Phone Number</string>
     <string name="register">Register</string>
-    <string name="app_mobile_night">Mobile Night 2018</string>
-    <string name="app_about_us">About us</string>
+    <string name="app_mobile_night">Mobile Night 2019</string>
     <string name="welcome_copy">Stateside\'s Mobile Night will be an event experience featuring talks from Costa Rica’s  mobile industry thought leaders, great music, and many other surprises. Meet with like- minded developers for engaging conversations, discover new ideas to push the mobile  world forward, and learn how you can be part of our team at Stateside.</string>
     <string name="about_us_copy">Stateside is a creative &amp; technical digital agency. We provide efficient, premium scalable production services through co-location of resources in U.S. and Costa Rica. We tailor our relationships to address our clients’ needs from project work to retained teams and everything in between.\n\nAt Stateside we are committed to achieve our clients\' digital goals. Our job as a company is to be strategically aligned with our partners. Our team of forward thinking individuals will morph, flex and bend to accommodate as necessary to reach the right solution and complete incoming projects.</string>
     <string name="instructions">Please fill the following info to participate in our Mobile Night’s raffle. Amazing prizes are waiting for you!</string>
     <string name="instructions_2">* In order to win a prize you must be attending to the event.\n* You will need your ID to claim your prize in case you win.</string>
+    <string name="welcome">Welcome</string>
+    <string name="about_us">About Us</string>
 </resources>

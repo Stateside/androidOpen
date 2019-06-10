@@ -1,135 +1,69 @@
 package com.stateside.stateside.appmodule.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toolbar;
 
 import com.stateside.stateside.R;
-import com.stateside.stateside.appmodule.fragment.BaseFragment;
-import com.stateside.stateside.appmodule.fragment.LocationFragment;
+import com.stateside.stateside.appmodule.fragment.HomeFragment;
 import com.stateside.stateside.appmodule.fragment.PrizesFragment;
-import com.stateside.stateside.appmodule.fragment.ScheduleFragment;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.stateside.stateside.appmodule.fragment.RegisterFragment;
 
 public class MainActivity extends BaseClass {
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private ViewPagerAdapter adapter;
+
+    BottomNavigationView bottomNavigationView;
+
+    private static final String FRAGMENT_HOME = "HOME";
+    private static final String FRAGMENT_PRIZES = "PRIZES";
+    private static final String FRAGMENT_REGISTER = "REGISTER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setActionBar(toolbar);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        setFragment(new HomeFragment(), FRAGMENT_HOME);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, StartActivity.class);
-                startActivity(intent);
-                finish();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_home:
+                        setFragment(new HomeFragment(), FRAGMENT_HOME);
+                        return true;
+                    case R.id.action_prizes:
+                        setFragment(new PrizesFragment(), FRAGMENT_PRIZES);
+                        return true;
+                    case R.id.action_register:
+                        setFragment(new RegisterFragment(), FRAGMENT_REGISTER);
+                        return true;
+                    default:
+                        break;
+                }
+
+                return true;
             }
         });
-
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-
-        findViewById(R.id.imageButtonInformation).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
     }
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-
+                //setFragment(new HomeFragment(), FRAGMENT_HOME);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ScheduleFragment(), "SCHEDULE");
-        adapter.addFragment(new LocationFragment(), "LOCATION");
-        adapter.addFragment(new PrizesFragment(), "PRIZES");
-        viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (!((BaseFragment)adapter.getCurrentFragment()).onBackPressed()) {
-            super.onBackPressed();
-        }
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-        private Fragment mCurrentFragment;
-
-        public Fragment getCurrentFragment() {
-            return mCurrentFragment;
-        }
-
-        @Override
-        public void setPrimaryItem(ViewGroup container, int position, Object object) {
-            if (getCurrentFragment() != object) {
-                mCurrentFragment = ((Fragment) object);
-            }
-            super.setPrimaryItem(container, position, object);
-        }
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
+    private void setFragment(Fragment fragment, String tag) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment, tag)
+                .commit();
     }
 }

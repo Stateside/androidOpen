@@ -1,54 +1,41 @@
 package com.stateside.stateside.information;
 
-import com.google.gson.annotations.SerializedName;
 
 public class GanadorResponse {
+    int status;
+    String error;
+    int id;
+    String fullName;
 
-    boolean error;
-    String message;
-    String name;
-    @SerializedName("last_name")
-    String lastName;
-    @SerializedName("winner ")
-    int winner;
+    public int getStatus() {
+        return status;
+    }
 
-    public boolean isError() {
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getError() {
         return error;
     }
 
-    public void setError(boolean error) {
+    public void setError(String error) {
         this.error = error;
     }
 
-    public String getMessage() {
-        return message;
+    public int getId() {
+        return id;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public int getWinner() {
-        return winner;
-    }
-
-    public void setWinner(int winner) {
-        this.winner = winner;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

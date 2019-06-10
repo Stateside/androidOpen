@@ -3,43 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbarHeight"
-            android:background="@color/colorPrimary"
-            android:navigationIcon="@drawable/back"
-            android:title="@string/app_mobile_night"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:layout_marginBottom="@dimen/half_margin">
-
-        <ImageButton
-            android:id="@+id/imageButtonInformation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:background="@color/colorPrimary"
-            android:layout_gravity="right"
-            app:srcCompat="@drawable/information" />
-        </Toolbar>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            app:tabGravity="fill"/>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_margin="@dimen/margin"
+    <LinearLayout
+        android:id="@+id/linear_layout_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/darkGray"
+            app:itemIconTint="@drawable/selector_navigation_icon"
+            app:itemTextColor="@drawable/selector_navigation_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/main_menu_bottom" />
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
