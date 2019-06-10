@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/half_margin"
                 android:background="@color/darkGray"
+                android:titleTextColor="@color/white"
                 android:title="Prizes"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 

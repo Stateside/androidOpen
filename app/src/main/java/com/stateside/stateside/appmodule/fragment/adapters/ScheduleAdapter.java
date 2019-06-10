@@ -46,7 +46,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ScheduleAdapter.ViewHolder holder, int position) {
         final Event event = events[position];
-        holder.getTextViewTimes().setText(event.getStartTime() + " - " + event.getEndTime());
+        holder.getTextViewStartTime().setText(event.getStartTime());
+        holder.getTextViewEndTime().setText(event.getEndTime());
         holder.getTextViewTitle().setText(event.getTitle());
         holder.getTextViewVenue().setText(event.getVenue());
         Calendar startTime = Calendar.getInstance();
@@ -60,19 +61,22 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         }
         Calendar currentTime = new GregorianCalendar();
         if (startTime.before(currentTime) && endTime.after(currentTime)) {
-            holder.getTextViewTimes().setTextColor(Color.WHITE);
+            holder.getTextViewStartTime().setTextColor(Color.WHITE);
+            holder.getTextViewEndTime().setTextColor(Color.WHITE);
             holder.getTextViewTitle().setTextColor(Color.WHITE);
             holder.getTextViewVenue().setTextColor(Color.WHITE);
             holder.background.setVisibility(View.GONE);
-            holder.getRelativeLayout().setBackgroundResource(R.color.colorAccent);
+            holder.getRelativeLayout().setBackgroundResource(R.color.colorPrimary);
         } else if (endTime.before(currentTime)) {
-            holder.getTextViewTimes().setTextColor(Color.BLACK);
-            holder.getTextViewTitle().setTextColor(Color.BLACK);
-            holder.getTextViewVenue().setTextColor(Color.BLACK);
+            holder.getTextViewStartTime().setTextColor(Color.GRAY);
+            holder.getTextViewEndTime().setTextColor(Color.GRAY);
+            holder.getTextViewTitle().setTextColor(Color.GRAY);
+            holder.getTextViewVenue().setTextColor(Color.GRAY);
             holder.background.setVisibility(View.VISIBLE);
             holder.getRelativeLayout().setBackgroundResource(R.drawable.back_line);
         } else {
-            holder.getTextViewTimes().setTextColor(Color.BLACK);
+            holder.getTextViewStartTime().setTextColor(Color.BLACK);
+            holder.getTextViewEndTime().setTextColor(Color.BLACK);
             holder.getTextViewTitle().setTextColor(Color.BLACK);
             holder.getTextViewVenue().setTextColor(Color.BLACK);
             holder.background.setVisibility(View.GONE);
@@ -99,7 +103,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewTimes;
+        TextView textViewStartTime;
+        TextView textViewEndTime;
         TextView textViewTitle;
         TextView textViewVenue;
         ImageView imageViewArrow;
@@ -109,7 +114,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textViewTimes = (TextView)itemView.findViewById(R.id.textViewTimes);
+            textViewStartTime = (TextView)itemView.findViewById(R.id.textViewStartTime);
+            textViewEndTime = (TextView)itemView.findViewById(R.id.textViewEndTime);
             textViewTitle = (TextView)itemView.findViewById(R.id.textViewTitle);
             textViewVenue = (TextView)itemView.findViewById(R.id.textViewVenue);
             imageViewArrow = (ImageView)itemView.findViewById(R.id.imageViewArrow);
@@ -117,12 +123,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
             relativeLayout = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
         }
 
-        public TextView getTextViewTimes() {
-            return textViewTimes;
+        public TextView getTextViewStartTime() {
+            return textViewStartTime;
         }
 
-        public void setTextViewTimes(TextView textViewTimes) {
-            this.textViewTimes = textViewTimes;
+        public TextView getTextViewEndTime() {
+            return textViewEndTime;
         }
 
         public TextView getTextViewTitle() {

@@ -127,6 +127,16 @@
                 android:text="DIRECTIONS"
                 android:textColor="@color/white" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="Schedule"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

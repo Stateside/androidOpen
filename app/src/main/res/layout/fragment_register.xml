@@ -25,10 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/half_margin"
-                android:background="@android:color/transparent"
-                android:gravity="top"
+                android:background="@color/darkGray"
+                android:titleTextColor="@color/white"
                 android:title="Register"
-                app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <ImageButton
@@ -36,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:background="@android:color/transparent"
+                    android:background="@color/darkGray"
                     android:padding="20dp"
                     app:srcCompat="@drawable/information" />
             </Toolbar>
