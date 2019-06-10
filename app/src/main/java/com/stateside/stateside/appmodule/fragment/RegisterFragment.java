@@ -32,7 +32,7 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     private EditText editTextPhone;
 
     private SharedPreferences sharedPreferences;
-    private static final String REGISTER_PREFERENCES = "Register";
+    private static final String REGISTER_PREFERENCES = "REGISTER";
 
     public RegisterFragment() {
 
