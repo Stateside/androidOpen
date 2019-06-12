@@ -65,10 +65,8 @@
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
+
                     <FrameLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        xmlns:tools="http://schemas.android.com/tools"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -80,7 +78,7 @@
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_centerInParent="true"
                                 android:gravity="center"
                                 android:orientation="vertical">
@@ -109,17 +107,6 @@
                                     android:text="WON!"
                                     android:textColor="@color/white"
                                     android:textSize="120sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="32dp"
-                                    android:layout_marginTop="40dp"
-                                    android:layout_marginEnd="32dp"
-                                    android:gravity="center"
-                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in luctus sapien."
-                                    android:textColor="@color/white"
-                                    android:textSize="16sp" />
                             </LinearLayout>
                         </RelativeLayout>
 
@@ -177,8 +164,7 @@
                                 android:background="@drawable/round_shape_button"
                                 android:paddingHorizontal="@dimen/horizontal_padding"
                                 android:text="Refresh"
-                                android:textColor="@color/white"
-                                />
+                                android:textColor="@color/white" />
 
                         </RelativeLayout>
 
@@ -202,7 +188,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="WE HAVEN'T\nstart with the\nprizing yet"
+                                    android:text="OOOPS, we will start our live raffle soon!"
                                     android:textAllCaps="true"
                                     android:textSize="35sp"
                                     tools:ignore="MissingPrefix" />

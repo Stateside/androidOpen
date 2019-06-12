@@ -24,6 +24,7 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
 
     private String AUTH= "d7e2b639fdfc4cfdfad5f6ba3d7dcdca";
     public static String EMAIL = "EMAIL";
+    public static String ID = "ID";
 
     private EditText editTextFullName;
     private EditText editTextJobTitle;
@@ -32,7 +33,7 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     private EditText editTextPhone;
 
     private SharedPreferences sharedPreferences;
-    private static final String REGISTER_PREFERENCES = "REGISTER";
+    public static final String REGISTER_PREFERENCES = "REGISTER";
 
     public RegisterFragment() {
 
@@ -94,6 +95,7 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                         if (response.isSuccessful()) {
                             getSharedPreferences().edit()
                                     .putString(EMAIL, editTextEmail.getText().toString())
+                                    .putLong(ID, response.body().getId())
                                     .apply();
                         } else {
                             Toast.makeText(getContext(), "Some problems on the backend", Toast.LENGTH_SHORT);

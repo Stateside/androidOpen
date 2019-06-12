@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 public interface StatesideService {
 
     @FormUrlEncoded
-    @POST("user")
+    @POST("register")
     Call<NewUserResponse> newUser (@Header("Authorization") String token,
                                    @Field("fullName") String fullName,
                                    @Field("jobTitle") String jobTitle,
@@ -22,16 +22,16 @@ public interface StatesideService {
     );
 
     @FormUrlEncoded
-    @POST("currentChat")
-    Call<GanadorResponse> getCurrentChat (@Header("Authorization") String token);
+    @POST("api/v1/currentAgendaItem")
+    Call<GanadorResponse> getCurrentAgenda (@Header("Authorization") String token);
 
     @FormUrlEncoded
-    @POST("getWinner")
+    @POST("api/v1/raffleWinners")
     Call<GanadorResponse> getWinner (@Header("Authorization") String token);
 
     @FormUrlEncoded
-    @POST("checkIn")
+    @POST("api/v1/checkIn")
     Call<GanadorResponse> checkIn (@Header("Authorization") String token,
-                                   @Field("id") String id);
+                                   @Field("id") Long id);
 
 }
