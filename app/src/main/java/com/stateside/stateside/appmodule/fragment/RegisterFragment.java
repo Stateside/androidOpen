@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.stateside.stateside.R;
@@ -22,8 +25,6 @@ import retrofit2.Response;
 
 public class RegisterFragment extends BaseFragment implements View.OnClickListener {
 
-    private String AUTH= "d7e2b639fdfc4cfdfad5f6ba3d7dcdca";
-    public static String EMAIL = "EMAIL";
     public static String ID = "ID";
 
     private EditText editTextFullName;
@@ -31,6 +32,9 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     private EditText editTextLevel;
     private EditText editTextEmail;
     private EditText editTextPhone;
+
+    ConstraintLayout quizDone;
+    LinearLayout quiz;
 
     private SharedPreferences sharedPreferences;
     public static final String REGISTER_PREFERENCES = "REGISTER";
@@ -54,7 +58,24 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setupViews(view);
         setupButtons(view);
+        validateRegistration();
+    }
+
+    private void validateRegistration() {
+        if(getSharedPreferences().getLong(ID, 0) == 0) {
+            quiz.setVisibility(View.VISIBLE);
+            quizDone.setVisibility(View.GONE);
+        } else {
+            quiz.setVisibility(View.GONE);
+            quizDone.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setupViews(View view) {
+        quizDone = view.findViewById(R.id.quizDone);
+        quiz = view.findViewById(R.id.quiz);
     }
 
     private void setupButtons(View view){
@@ -83,30 +104,37 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void register() {
-        JSONClient.getRetrofit().newUser(AUTH,
-                        editTextFullName.getText().toString(),
-                        editTextJobTitle.getText().toString(),
-                        editTextLevel.getText().toString(),
-                        editTextEmail.getText().toString(),
-                        editTextPhone.getText().toString())
-                .enqueue(new Callback<NewUserResponse>() {
-                    @Override
-                    public void onResponse(Call<NewUserResponse> call, Response<NewUserResponse> response) {
-                        if (response.isSuccessful()) {
-                            getSharedPreferences().edit()
-                                    .putString(EMAIL, editTextEmail.getText().toString())
-                                    .putLong(ID, response.body().getId())
-                                    .apply();
-                        } else {
-                            Toast.makeText(getContext(), "Some problems on the backend", Toast.LENGTH_SHORT);
+        if (!editTextFullName.getText().toString().isEmpty() ||
+                !editTextJobTitle.getText().toString().isEmpty() ||
+                !editTextLevel.getText().toString().isEmpty() ||
+                !editTextEmail.getText().toString().isEmpty() ||
+                !editTextPhone.getText().toString().isEmpty()) {
+
+            JSONClient.getRetrofit().newUser(
+                    editTextFullName.getText().toString(),
+                    editTextJobTitle.getText().toString(),
+                    editTextLevel.getText().toString(),
+                    editTextEmail.getText().toString(),
+                    editTextPhone.getText().toString())
+                    .enqueue(new Callback<NewUserResponse>() {
+                        @Override
+                        public void onResponse(Call<NewUserResponse> call, Response<NewUserResponse> response) {
+                            if (response.isSuccessful()) {
+                                getSharedPreferences().edit()
+                                        .putLong(ID, response.body().getId())
+                                        .apply();
+                                validateRegistration();
+                            } else {
+                                Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<NewUserResponse> call, Throwable t) {
-
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<NewUserResponse> call, Throwable t) {
+                            Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 
     private SharedPreferences getSharedPreferences() {

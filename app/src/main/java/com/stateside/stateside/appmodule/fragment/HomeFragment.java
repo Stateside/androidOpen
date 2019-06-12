@@ -6,29 +6,30 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.Button;
 
 import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.stateside.stateside.R;
 import com.stateside.stateside.appmodule.activity.AboutActivity;
+import com.stateside.stateside.appmodule.activity.MainActivity;
 import com.stateside.stateside.appmodule.activity.ScheduleDetailActivity;
 import com.stateside.stateside.appmodule.activity.DirectionsActivity;
 import com.stateside.stateside.appmodule.fragment.adapters.ScheduleAdapter;
 import com.stateside.stateside.information.Event;
-import com.stateside.stateside.information.GanadorResponse;
 import com.stateside.stateside.networking.JSONClient;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,6 +41,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     ConstraintLayout checkinScreen;
     private SharedPreferences sharedPreferences;
+    final public static String CHECKED_IN = "CHECKED_IN";
+
+
+    Button buttonCheckinMain;
 
     public HomeFragment() {
 
@@ -71,6 +76,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setFocusable(false);
         view.findViewById(R.id.container).requestFocus();
+
+        if(getSharedPreferences().getBoolean(CHECKED_IN, false)) {
+            buttonCheckinMain.setVisibility(View.GONE);
+        } else {
+            buttonCheckinMain.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setupButtons(View view) {
@@ -79,7 +90,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
         view.findViewById(R.id.buttonDirections).setOnClickListener(this);
         view.findViewById(R.id.imageButtonInformation).setOnClickListener(this);
-        view.findViewById(R.id.buttonCheckinMain).setOnClickListener(this);
+
+        buttonCheckinMain = view.findViewById(R.id.buttonCheckinMain);
+        buttonCheckinMain.setOnClickListener(this);
     }
 
     public String loadJSONFromAsset() {
@@ -105,10 +118,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         return events;
     }
 
-    public void display(String titleS, String descriptionS) {
+    public void display(String titleS, String descriptionS, String resource) {
         Intent intent = new Intent(getActivity(), ScheduleDetailActivity.class);
         intent.putExtra("title", titleS);
         intent.putExtra("description", descriptionS);
+        intent.putExtra("resource", resource);
         startActivity(intent);
     }
 
@@ -127,7 +141,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 if(getSharedPreferences().getLong(ID, 0) != 0) {
                     checkinScreen.setVisibility(View.VISIBLE);
                 } else {
-
+                    BottomNavigationView bottomNavigationView = ((MainActivity)getActivity()).findViewById(R.id.bottom_navigation);
+                    View registerAction = bottomNavigationView.findViewById(R.id.action_register);
+                    registerAction.performClick();
                 }
                 break;
             case R.id.buttonCheckin:
@@ -153,15 +169,17 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void checkin() {
-        JSONClient.getRetrofit().checkIn("", getSharedPreferences().getLong(ID, 0))
-                .enqueue(new Callback<GanadorResponse>() {
+        JSONClient.getRetrofit().checkIn(getSharedPreferences().getLong(ID, 0))
+                .enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call<GanadorResponse> call, Response<GanadorResponse> response) {
-
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if(response.code() == 200) {
+                            getSharedPreferences().edit().putBoolean(CHECKED_IN, true).apply();
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<GanadorResponse> call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                     }
                 });

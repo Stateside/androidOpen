@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.stateside.stateside.R;
-import com.stateside.stateside.appmodule.fragment.adapters.ScheduleAdapter;
 import com.stateside.stateside.information.Event;
 
 import java.io.IOException;
@@ -45,7 +44,7 @@ public class ScheduleFragment extends BaseFragment {
             }
         });
         title = view.findViewById(R.id.textViewTitle);
-        description = view.findViewById(R.id.textViewDescription);
+        description = view.findViewById(R.id.textViewSubject);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerSchedule);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);

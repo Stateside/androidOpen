@@ -31,8 +31,6 @@ public class PrizesFragment extends BaseFragment implements View.OnClickListener
     private RelativeLayout prizenotfound;
     private RelativeLayout won;
 
-    private String AUTH = "d7e2b639fdfc4cfdfad5f6ba3d7dcdca";
-
     public PrizesFragment() {
 
     }
@@ -71,7 +69,7 @@ public class PrizesFragment extends BaseFragment implements View.OnClickListener
     }
 
     private void updateVisibilities() {
-        JSONClient.getRetrofit().getWinner(AUTH)
+        JSONClient.getRetrofit().getWinner()
                 .enqueue(new Callback<GanadorResponse>() {
                     @Override
                     public void onResponse(Call<GanadorResponse> call, Response<GanadorResponse> response) {

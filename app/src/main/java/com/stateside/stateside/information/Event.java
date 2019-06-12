@@ -6,6 +6,7 @@ public class Event {
     private String endTime;
     private String venue;
     private String description;
+    private String resource;
 
     public String getTitle() {
         return title;
@@ -45,5 +46,13 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
     }
 }

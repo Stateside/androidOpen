@@ -91,7 +91,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
             holder.getRelativeLayout().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    scheduleFragment.display(event.getTitle(), event.getDescription());
+                    scheduleFragment.display(event.getTitle(), event.getDescription(), event.getResource());
                 }
             });
         }

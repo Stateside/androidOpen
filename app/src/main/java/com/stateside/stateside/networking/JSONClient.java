@@ -10,7 +10,7 @@ public class JSONClient {
     public static StatesideService getRetrofit() {
         if (service == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://34.203.61.130/restapi/v1/")
+                    .baseUrl("http://ec2-3-88-21-95.compute-1.amazonaws.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
