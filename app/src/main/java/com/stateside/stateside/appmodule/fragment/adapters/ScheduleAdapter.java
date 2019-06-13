@@ -24,6 +24,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     Event[] events;
     Context context;
     HomeFragment scheduleFragment;
+    private int currentEvent = 0;
 
     public ScheduleAdapter(Event[] events, HomeFragment scheduleFragment) {
         this.events = events;
@@ -50,35 +51,19 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         holder.getTextViewEndTime().setText(event.getEndTime());
         holder.getTextViewTitle().setText(event.getTitle());
         holder.getTextViewVenue().setText(event.getVenue());
-        Calendar startTime = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mma");
-        Calendar endTime = Calendar.getInstance();
-        try {
-            startTime.setTime(dateFormat.parse("1/18/2018 " + event.getStartTime()));
-            endTime.setTime(dateFormat.parse("1/18/2018 " + event.getEndTime()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Calendar currentTime = new GregorianCalendar();
-        if (startTime.before(currentTime) && endTime.after(currentTime)) {
+
+        if (currentEvent == position) {
             holder.getTextViewStartTime().setTextColor(Color.WHITE);
             holder.getTextViewEndTime().setTextColor(Color.WHITE);
             holder.getTextViewTitle().setTextColor(Color.WHITE);
             holder.getTextViewVenue().setTextColor(Color.WHITE);
             holder.background.setVisibility(View.GONE);
             holder.getRelativeLayout().setBackgroundResource(R.color.colorPrimary);
-        } else if (endTime.before(currentTime)) {
+        } else {
             holder.getTextViewStartTime().setTextColor(Color.GRAY);
             holder.getTextViewEndTime().setTextColor(Color.GRAY);
-            holder.getTextViewTitle().setTextColor(Color.GRAY);
-            holder.getTextViewVenue().setTextColor(Color.GRAY);
-            holder.background.setVisibility(View.VISIBLE);
-            holder.getRelativeLayout().setBackgroundResource(R.drawable.back_line);
-        } else {
-            holder.getTextViewStartTime().setTextColor(Color.BLACK);
-            holder.getTextViewEndTime().setTextColor(Color.BLACK);
             holder.getTextViewTitle().setTextColor(Color.BLACK);
-            holder.getTextViewVenue().setTextColor(Color.BLACK);
+            holder.getTextViewVenue().setTextColor(Color.GRAY);
             holder.background.setVisibility(View.GONE);
             holder.getRelativeLayout().setBackgroundResource(R.drawable.back_line);
         }
@@ -170,5 +155,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         public void setRelativeLayout(RelativeLayout relativeLayout) {
             this.relativeLayout = relativeLayout;
         }
+    }
+
+    public void setCurrentEvent(int pos) {
+        currentEvent = pos;
+        notifyDataSetChanged();
     }
 }

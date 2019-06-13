@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_close_icon" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../Desktop/ASSETS_STATESIDE_MOBILE/svg/close_icon.svg" />
+                            <entry key="outputName" value="ic_outline_location_on_24" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../Downloads/outline-location_on-24px(1).svg" />
                           </map>
                         </option>
                       </PersistentState>

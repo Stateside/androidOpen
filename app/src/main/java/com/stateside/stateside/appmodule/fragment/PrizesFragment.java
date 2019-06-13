@@ -22,6 +22,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.stateside.stateside.appmodule.fragment.RegisterFragment.ID;
+
 public class PrizesFragment extends BaseFragment implements View.OnClickListener {
 
     SharedPreferences sharedPreferences;
@@ -51,21 +53,10 @@ public class PrizesFragment extends BaseFragment implements View.OnClickListener
         haventstart = view.findViewById(R.id.haventstart);
         prizenotfound = view.findViewById(R.id.prizenotfound);
         won = view.findViewById(R.id.won);
-        setVisibilities();
-        return view;
-    }
 
-    private void setVisibilities() {
-        if(getSharedPreferences().getString(PHONE, null) == null) {
-            haventstart.setVisibility(View.GONE);
-            prizenotfound.setVisibility(View.GONE);
-            won.setVisibility(View.GONE);
-        } else {
-            haventstart.setVisibility(View.GONE);
-            prizenotfound.setVisibility(View.GONE);
-            won.setVisibility(View.GONE);
-            updateVisibilities();
-        }
+        //haventstart.setVisibility(View.VISIBLE);
+        updateVisibilities();
+        return view;
     }
 
     private void updateVisibilities() {
@@ -73,7 +64,7 @@ public class PrizesFragment extends BaseFragment implements View.OnClickListener
                 .enqueue(new Callback<GanadorResponse>() {
                     @Override
                     public void onResponse(Call<GanadorResponse> call, Response<GanadorResponse> response) {
-                        processGanador (response.body());
+                        processGanador(response.body());
                     }
 
                     @Override
@@ -87,20 +78,15 @@ public class PrizesFragment extends BaseFragment implements View.OnClickListener
         haventstart.setVisibility(View.GONE);
         prizenotfound.setVisibility(View.GONE);
         won.setVisibility(View.GONE);
-        switch (body.getId()) {
-            case 1:
-            case 2:
-            case 3:
-                won.setVisibility(View.VISIBLE);
-                break;
-            case -1:
-                haventstart.setVisibility(View.VISIBLE);
-                break;
-            case 0:
-                prizenotfound.setVisibility(View.VISIBLE);
-                break;
-            default:
-                break;
+
+        long winnerId = getSharedPreferences().getLong(ID, 0);
+
+        if(body.getId() == -1) {
+            haventstart.setVisibility(View.VISIBLE);
+        } else if(body.getId() == winnerId) {
+            won.setVisibility(View.VISIBLE);
+        } else {
+            prizenotfound.setVisibility(View.VISIBLE);
         }
     }
 
@@ -115,8 +101,10 @@ public class PrizesFragment extends BaseFragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonRefresh1:
+                updateVisibilities();
+                break;
             case R.id.buttonRefresh2:
-                setVisibilities();
+                updateVisibilities();
                 break;
             case R.id.imageButtonInformation:
                 Intent aboutIntent = new Intent(getActivity(), AboutActivity.class);

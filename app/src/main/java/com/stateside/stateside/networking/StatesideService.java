@@ -1,5 +1,6 @@
 package com.stateside.stateside.networking;
 
+import com.stateside.stateside.information.CurrentEvent;
 import com.stateside.stateside.information.GanadorResponse;
 import com.stateside.stateside.information.NewUserResponse;
 
@@ -21,11 +22,9 @@ public interface StatesideService {
                                    @Field("phone") String phone
     );
 
-    @FormUrlEncoded
     @GET("api/v1/currentAgendaItem")
-    Call<GanadorResponse> getCurrentAgenda();
+    Call<CurrentEvent> getCurrentAgenda();
 
-    @FormUrlEncoded
     @GET("api/v1/raffleWinners")
     Call<GanadorResponse> getWinner();
 

@@ -1,5 +1,6 @@
 package com.stateside.stateside.appmodule.fragment;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,10 +8,14 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import com.stateside.stateside.R;
 import com.stateside.stateside.appmodule.activity.MainActivity;
 
 public class WelcomeFragment extends BaseFragment {
+
+    ImageView ivPhone;
 
     public WelcomeFragment() {
 
@@ -30,6 +35,7 @@ public class WelcomeFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupButtons(view);
+        ivPhone = view.findViewById(R.id.ivPhone);
     }
 
     private void setupButtons(View view){

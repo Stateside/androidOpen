@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -23,11 +25,16 @@ import com.stateside.stateside.appmodule.activity.MainActivity;
 import com.stateside.stateside.appmodule.activity.ScheduleDetailActivity;
 import com.stateside.stateside.appmodule.activity.DirectionsActivity;
 import com.stateside.stateside.appmodule.fragment.adapters.ScheduleAdapter;
+import com.stateside.stateside.information.CurrentEvent;
 import com.stateside.stateside.information.Event;
 import com.stateside.stateside.networking.JSONClient;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -39,12 +46,14 @@ import static com.stateside.stateside.appmodule.fragment.RegisterFragment.REGIST
 
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
-    ConstraintLayout checkinScreen;
-    private SharedPreferences sharedPreferences;
     final public static String CHECKED_IN = "CHECKED_IN";
 
-
-    Button buttonCheckinMain;
+    private ConstraintLayout checkinScreen;
+    private SharedPreferences sharedPreferences;
+    private TextView tvCheckinTitle, tvCheckinSubtitle;
+    private Button buttonCheckin;
+    private Button buttonCheckinMain;
+    private ScheduleAdapter adapter;
 
     public HomeFragment() {
 
@@ -68,24 +77,48 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         setupButtons(view);
 
         checkinScreen = view.findViewById(R.id.checkinDialog);
+        tvCheckinSubtitle = view.findViewById(R.id.tvCheckinSubtitle);
+        tvCheckinTitle = view.findViewById(R.id.tvCheckinTitle);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerSchedule);
+
+        adapter = new ScheduleAdapter(getEvents(), this);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new ScheduleAdapter(getEvents(), this));
+        recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setFocusable(false);
         view.findViewById(R.id.container).requestFocus();
+        validateCheckin();
 
+        getCurrentEvent();
+    }
+
+    private void validateCheckin() {
         if(getSharedPreferences().getBoolean(CHECKED_IN, false)) {
             buttonCheckinMain.setVisibility(View.GONE);
         } else {
-            buttonCheckinMain.setVisibility(View.VISIBLE);
+
+            Calendar startTime = Calendar.getInstance();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mma");
+
+            try {
+                startTime.setTime(dateFormat.parse("06/12/2018 00:00AM"));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Calendar currentTime = new GregorianCalendar();
+            if (currentTime.after(startTime)) {
+                buttonCheckinMain.setVisibility(View.VISIBLE);
+            }
         }
     }
 
     private void setupButtons(View view) {
-        view.findViewById(R.id.buttonCheckin).setOnClickListener(this);
+        buttonCheckin = view.findViewById(R.id.buttonCheckin);
+        buttonCheckin.setOnClickListener(this);
         view.findViewById(R.id.imageButtonCheckingClose).setOnClickListener(this);
 
         view.findViewById(R.id.buttonDirections).setOnClickListener(this);
@@ -147,7 +180,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 }
                 break;
             case R.id.buttonCheckin:
-                requestQRScanner();
+                if(!getSharedPreferences().getBoolean(CHECKED_IN, false)) {
+                    requestQRScanner();
+                } else {
+                    checkinScreen.setVisibility(View.GONE);
+                }
+
                 break;
             case R.id.imageButtonCheckingClose:
                 checkinScreen.setVisibility(View.GONE);
@@ -175,14 +213,25 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if(response.code() == 200) {
                             getSharedPreferences().edit().putBoolean(CHECKED_IN, true).apply();
+                            validateCheckin();
+                            displaySuccess();
+                        } else {
+                            Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                        Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void displaySuccess() {
+        tvCheckinTitle.setText("ALL SET!");
+        tvCheckinSubtitle.setText("You were successfully checked in! \nWe hope you enjoy the event :)");
+        buttonCheckin.setText("CONTINUE");
+        checkinScreen.setVisibility(View.VISIBLE);
     }
 
     private void requestQRScanner() {
@@ -200,5 +249,25 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             sharedPreferences = getContext().getSharedPreferences(REGISTER_PREFERENCES, Context.MODE_PRIVATE);
         }
         return sharedPreferences;
+    }
+
+
+    private void getCurrentEvent() {
+        JSONClient.getRetrofit().getCurrentAgenda()
+                .enqueue(new Callback<CurrentEvent>() {
+                    @Override
+                    public void onResponse(Call<CurrentEvent> call, Response<CurrentEvent> response) {
+                        if(response.code() == 200) {
+                            adapter.setCurrentEvent(response.body().getCurrent());
+                        } else {
+                            Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CurrentEvent> call, Throwable t) {
+                        Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

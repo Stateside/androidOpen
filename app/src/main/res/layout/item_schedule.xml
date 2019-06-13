@@ -49,11 +49,11 @@
                 android:background="@drawable/back_line"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/margin"
-                android:paddingTop="@dimen/half_margin"
-                android:paddingBottom="@dimen/half_margin"
+                android:paddingStart="30dp"
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:id="@+id/relativeLayout">
 
                 <TextView
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:text="TextView" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textViewVenue"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:text="TextView" />
+                    android:text="" />
 
                 <ImageView
                     android:id="@+id/imageViewArrow"

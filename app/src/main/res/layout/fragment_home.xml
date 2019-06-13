@@ -33,6 +33,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:scaleType="fitXY"
+                        android:transitionName="phone"
                         app:layout_collapseParallaxMultiplier="0.5"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -100,12 +101,13 @@
                 android:id="@+id/buttonCheckinMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
                 android:background="@drawable/round_shape_button_gray"
                 android:paddingStart="60dp"
                 android:paddingEnd="60dp"
                 android:text="@string/check_in"
-                android:layout_gravity="bottom|center"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -127,7 +129,7 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonDirections"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,6 +138,8 @@
                 android:layout_marginTop="36dp"
                 android:paddingStart="60dp"
                 android:paddingEnd="60dp"
+                android:drawableEnd="@drawable/ic_outline_location_on_24"
+                android:drawablePadding="15dp"
                 android:text="DIRECTIONS"
                 android:textColor="@color/white" />
 

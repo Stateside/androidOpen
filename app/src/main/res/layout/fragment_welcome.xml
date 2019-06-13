@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:scaleType="fitXY"
+                android:transitionName="phone"
                 app:srcCompat="@drawable/ic_iphone_5x_welcome" />
 
             <ImageView
