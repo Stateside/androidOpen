@@ -75,6 +75,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="You've"
+                            android:textStyle="bold"
                             android:textColor="@color/white"
                             android:textSize="60sp" />
 
@@ -84,6 +85,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="-40dp"
                             android:gravity="center"
+                            android:textStyle="bold"
                             android:text="WON!"
                             android:textColor="@color/white"
                             android:textSize="120sp" />
@@ -152,7 +154,7 @@
                     android:id="@+id/haventstart"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:id="@+id/linearLayout3"
@@ -170,10 +172,8 @@
                             android:gravity="center"
                             android:layout_marginStart="32dp"
                             android:layout_marginEnd="32dp"
-                            android:text="OOOPS, we will start our live raffle soon!"
-                            android:textAllCaps="true"
-                            android:textSize="35sp"
-                            tools:ignore="MissingPrefix" />
+                            android:text="We will start our live raffle soon!\nEnjoy a drink in the meantime 🍻"
+                            android:textSize="35sp" />
 
                     </LinearLayout>
 

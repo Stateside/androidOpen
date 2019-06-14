@@ -29,13 +29,13 @@ public class MainActivity extends BaseClass {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getSharedPreferences().getBoolean(FIRST_TIME_PREFERENCES, true)) {
+        /*if(getSharedPreferences().getBoolean(FIRST_TIME_PREFERENCES, true)) {
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             getSharedPreferences().edit().putBoolean(FIRST_TIME_PREFERENCES, false).apply();
-        }
+        }*/
 
         setContentView(R.layout.activity_main);
 

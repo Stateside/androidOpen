@@ -54,7 +54,6 @@ public class AboutActivity extends BaseClass implements View.OnClickListener {
             default:
                 break;
         }
-
     }
 
     private void startFB() {
@@ -81,7 +80,8 @@ public class AboutActivity extends BaseClass implements View.OnClickListener {
     }
 
     private void startInstagram() {
-        Uri uri = Uri.parse("http://instagram.com/_u/stateside.agency");
+        //Uri uri = Uri.parse("http://instagram.com/_u/stateside.agency");
+        Uri uri = Uri.parse("https://www.instagram.com/stateside.agency");
         Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
 
         likeIng.setPackage("com.instagram.android");
@@ -89,8 +89,7 @@ public class AboutActivity extends BaseClass implements View.OnClickListener {
         try {
             startActivity(likeIng);
         } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://instagram.com/stateside.agency")));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/stateside.agency")));
         }
     }
 
@@ -104,7 +103,7 @@ public class AboutActivity extends BaseClass implements View.OnClickListener {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

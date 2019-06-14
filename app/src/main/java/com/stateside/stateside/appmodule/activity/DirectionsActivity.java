@@ -1,6 +1,7 @@
 package com.stateside.stateside.appmodule.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -35,6 +36,10 @@ public class DirectionsActivity extends BaseClass implements OnMapReadyCallback,
 
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         findViewById(R.id.imageButtonInformation).setOnClickListener(this);
+
+        findViewById(R.id.buttonMaps).setOnClickListener(this);
+        findViewById(R.id.buttonUber).setOnClickListener(this);
+        findViewById(R.id.buttonWaze).setOnClickListener(this);
     }
 
     @Override
@@ -75,6 +80,21 @@ public class DirectionsActivity extends BaseClass implements OnMapReadyCallback,
             case R.id.imageButtonInformation:
                 Intent aboutIntent = new Intent(this, AboutActivity.class);
                 startActivity(aboutIntent);
+                break;
+            case R.id.buttonMaps:
+                String map = "http://maps.google.com/maps?q=" + "stateside+costa+rica";
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+                startActivity(i);
+                break;
+            case R.id.buttonUber:
+                String uber = "https://m.uber.com/ul/?action=setPickup&dropoff[latitude]=9.9416735&dropoff[longitude]=-84.0751069&dropoff[nickname]=Stateside";
+                Intent iU = new Intent(Intent.ACTION_VIEW, Uri.parse(uber));
+                startActivity(iU);
+                break;
+            case R.id.buttonWaze:
+                String waze = "https://waze.com/ul?ll=9.9416735, -84.0751069";
+                Intent iW = new Intent(Intent.ACTION_VIEW, Uri.parse(waze));
+                startActivity(iW);
                 break;
             default:
                 break;

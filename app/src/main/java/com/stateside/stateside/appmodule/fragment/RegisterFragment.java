@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.stateside.stateside.R;
 import com.stateside.stateside.appmodule.activity.AboutActivity;
 import com.stateside.stateside.information.NewUserResponse;
@@ -120,13 +121,27 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                     .enqueue(new Callback<NewUserResponse>() {
                         @Override
                         public void onResponse(Call<NewUserResponse> call, Response<NewUserResponse> response) {
-                            if (response.isSuccessful()) {
+                            if (response.isSuccessful() && response.code() == 200) {
                                 getSharedPreferences().edit()
                                         .putLong(ID, response.body().getId())
                                         .apply();
                                 validateRegistration();
-                            } else {
-                                Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
+                            } else if(response.code() == 400) {
+                                NewUserResponse errors = new Gson().fromJson(response.errorBody().charStream(), NewUserResponse.class);
+
+                                if(errors != null){
+                                    if(errors.getFullName() != null && errors.getFullName().size() > 0) {
+                                        editTextFullName.setError(errors.getFullName().get(0));
+                                    }
+                                    if(errors.getEmail() != null && errors.getEmail().size() > 0) {
+                                        editTextEmail.setError(errors.getEmail().get(0));
+                                    }
+                                    if(errors.getPhone() != null && errors.getPhone().size() > 0) {
+                                        editTextPhone.setError(errors.getPhone().get(0));
+                                    }
+                                }
+
+                                //Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
                             }
                         }
 

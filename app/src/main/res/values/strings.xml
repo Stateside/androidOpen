@@ -8,11 +8,11 @@
     <string name="phone">Phone Number</string>
     <string name="register">Register</string>
     <string name="app_mobile_night">Mobile Night 2019</string>
-    <string name="welcome_copy">Stateside’s Mobile Night will be a night where we will be featuring talks from our mobile industry. Discover new ideas to push the mobile world forward. You will also learn how to  be part of our team at Stateside.\n\nEvent Details: June 20th, 6pm, at our Stateside office\n\nRegister to win some amazing prizes. Make sure to check in the day of the event</string>
+    <string name="welcome_copy">Tonight we are featuring talks from our great mobile developers. Discover new ideas to push the mobile industry forward and learn how to be part of our team.\n\nEvent details: June 20th, 6pm, at our offices.\n\nBook your sit today and check-in the day of the event to win amazing prizes.</string>
     <string name="about_us_copy">Stateside is a creative digital production agency, which provides efficient and organic scalable production.\n\nBy cultivating a culture of proactiveness, creative thinking, and professionalism, we are  committed to providing companies the boost they need to make a name for themselves in the ever-growing competitive industry.</string>
     <string name="instructions">Register and you will be participating to win prizes during the event such as an Echo dot, an Amazon Kindle and a Vilros RaspBerry PI.\n\nGood Luck!</string>
     <string name="instructions_2">* In order to win a prize you must be attending to the event.\n* You will need your ID to claim your prize in case you win.</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome">Welcome!</string>
     <string name="about_us">About Us</string>
     <string name="once_you_arrive_to_our_office_scan_the_qr_code">Once you arrive to our office, scan the QR code</string>
     <string name="check_in">CHECK-IN</string>

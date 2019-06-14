@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private Button buttonCheckin;
     private Button buttonCheckinMain;
     private ScheduleAdapter adapter;
+    private LinearLayout container;
+    private LinearLayout scrollMore;
 
     public HomeFragment() {
 
@@ -76,6 +79,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         setupButtons(view);
 
+        container = view.findViewById(R.id.container);
         checkinScreen = view.findViewById(R.id.checkinDialog);
         tvCheckinSubtitle = view.findViewById(R.id.tvCheckinSubtitle);
         tvCheckinTitle = view.findViewById(R.id.tvCheckinTitle);
@@ -89,10 +93,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setFocusable(false);
-        view.findViewById(R.id.container).requestFocus();
         validateCheckin();
-
         getCurrentEvent();
+        container.requestFocus();
+
+        container.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                scrollMore.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void validateCheckin() {
@@ -216,13 +226,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                             validateCheckin();
                             displaySuccess();
                         } else {
-                            Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Oops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Oops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -259,6 +269,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     public void onResponse(Call<CurrentEvent> call, Response<CurrentEvent> response) {
                         if(response.code() == 200) {
                             adapter.setCurrentEvent(response.body().getCurrent());
+                            container.requestFocus();
                         } else {
                             Toast.makeText(getContext(), "Ooops Something went wrong, try again later", Toast.LENGTH_SHORT).show();
                         }

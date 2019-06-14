@@ -1,5 +1,6 @@
 package com.stateside.stateside.appmodule.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.stateside.stateside.R;
@@ -16,19 +17,23 @@ public class StartActivity extends BaseClass {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        getSupportFragmentManager()
+        /*getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, new SplashFragment())
-                .commit();
+                .commit();*/
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                getSupportFragmentManager()
+                /*getSupportFragmentManager()
                         .beginTransaction()
                         .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                         .replace(R.id.fragment_container, new WelcomeFragment())
-                        .commitAllowingStateLoss();
+                        .commitAllowingStateLoss();*/
+                Intent intent = new Intent(StartActivity.this, MainActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
             }
         }, 2000);
     }

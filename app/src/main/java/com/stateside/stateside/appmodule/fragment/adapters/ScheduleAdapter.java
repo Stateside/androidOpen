@@ -2,6 +2,7 @@ package com.stateside.stateside.appmodule.fragment.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,10 +56,20 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         if (currentEvent == position) {
             holder.getTextViewStartTime().setTextColor(Color.WHITE);
             holder.getTextViewEndTime().setTextColor(Color.WHITE);
+            holder.getTextViewStartTime().setTypeface(null, Typeface.BOLD);
+            holder.getTextViewEndTime().setTypeface(null, Typeface.BOLD);
+            holder.getTextViewEndTime().setTextColor(Color.WHITE);
             holder.getTextViewTitle().setTextColor(Color.WHITE);
             holder.getTextViewVenue().setTextColor(Color.WHITE);
             holder.background.setVisibility(View.GONE);
             holder.getRelativeLayout().setBackgroundResource(R.color.colorPrimary);
+        } else if(position < currentEvent || currentEvent < 0){
+            holder.getTextViewStartTime().setTextColor(context.getColor(R.color.textOffHour));
+            holder.getTextViewEndTime().setTextColor(context.getColor(R.color.textOffHour));
+            holder.getTextViewTitle().setTextColor(context.getColor(R.color.textOffTitle));
+            holder.getTextViewVenue().setTextColor(context.getColor(R.color.textOffSubtitle));
+            holder.background.setVisibility(context.getColor(R.color.textOffSubtitle));
+            holder.getRelativeLayout().setBackgroundResource(R.color.agendaOff);
         } else {
             holder.getTextViewStartTime().setTextColor(Color.GRAY);
             holder.getTextViewEndTime().setTextColor(Color.GRAY);
@@ -158,7 +169,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     }
 
     public void setCurrentEvent(int pos) {
-        currentEvent = pos;
+        currentEvent = (pos - 1);
         notifyDataSetChanged();
     }
 }

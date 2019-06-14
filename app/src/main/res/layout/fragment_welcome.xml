@@ -40,6 +40,7 @@
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:text="@string/welcome"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -64,6 +65,8 @@
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
             android:text="ENTER"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:clickable="true"
             android:focusable="true"
             android:textColor="@color/colorPrimary" />

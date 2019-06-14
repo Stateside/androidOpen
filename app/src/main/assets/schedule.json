@@ -3,49 +3,49 @@
     "title": "Welcoming and registration",
     "startTime": "6:00PM",
     "endTime": "6:50PM",
-    "venue": "Stateside Agency 2nd floor"
+    "venue": "2nd floor"
   },
   {
-    "title": "Tech talk #1",
+    "title": "Tech Talk: RESTful APIs",
     "startTime": "7:00PM",
     "endTime": "7:40PM",
     "venue": "3rd floor",
     "resource": "allan",
-    "description": "<b>Title:</b> Thoughts on RESTful APIs meant to be used on a mobile device.<br><br><b>Summary:</b><ul><li>What is an API?</li><li>The RESTful architectural style</li><li>General considerations</li><li>Mobile specific considerations</li><li>3rd party solutions</li></ul><br><b>About the Speaker:</b> Allan Vásquez.<br>He is a Senior Backend Developer and an amateur photographer. He  loves to  travel and spending time outdoors. He enjoys listening to music and drinking good coffee."
+    "description": "<b>Title:</b> Tech Talk #1<br><br><b>Summary:</b><ul><li>What is an API?</li><li>The RESTful architectural style</li><li>General considerations</li><li>Mobile specific considerations</li><li>3rd party solutions</li></ul><br><b>About the Speaker:</b> Allan Vásquez.<br>He is a Senior Backend Developer and an amateur photographer. He  loves to  travel and spending time outdoors. He enjoys listening to music and drinking good coffee."
   },
   {
-    "title": "Catering service",
+    "title": "Pizza & beer time!",
     "startTime": "7:40PM",
     "endTime": "8:10PM",
     "venue": "2nd floor"
   },
   {
-    "title": "Tech talk #2",
+    "title": "Tech Talk: Android for IoT",
     "startTime": "8:10PM",
     "endTime": "8:50PM",
     "venue": "3rd floor",
     "resource": "oscar",
-    "description": "<b>Title:</b> Android for IoT<br><br><b>Summary:</b><ul><li>What is and how IoT works?</li><li>What are some differences with Android for cell phones</li><li>Real life example: \"Hello World\", applications and more</li><br><b>About the Speaker:</b> Oscar Valverde.<br>Android developer who started with Cupcake and now has more than 12  years of experience. Currently he is working for one of our Premium Clients, Sephora. He has worked with RidgeRun, IoT, and oT for Android with a raspberry pi 3"
+    "description": "<b>Title:</b> Tech Talk #2<br><br><b>Summary:</b><ul><li>What is and how IoT works?</li><li>What are some differences with Android for cell phones</li><li>Real life example: \"Hello World\", applications and more</li><br><b>About the Speaker:</b> Oscar Valverde.<br>Android developer who started with Cupcake and now has more than 12  years of experience. Currently he is working for one of our Premium Clients, Sephora. He has worked with RidgeRun, IoT, and oT for Android with a raspberry pi 3"
   },
   {
-    "title": "2nd break",
+    "title": "Ready for a treat?",
     "startTime": "8:50PM",
     "endTime": "9:00PM",
-    "venue": "Ready for a treat?",
+    "venue": "3rd floor",
     "description": ""
   },
   {
-    "title": "Tech talk #3",
+    "title": "Tech Talk: ML applied to Swift",
     "startTime": "9:00PM",
-    "endTime": "9:50PM",
+    "endTime": "9:30PM",
     "venue": "3rd floor",
     "resource": "alejandro",
     "description": "<b>Title:</b> Machine Learning using Swift<br><br><b>Summary:</b><ul><li>What is Machine Learning?</li><li>What tools iOS provided developers to use ML?</li><li>ML Use cases?</li><li>Sample app</li><br><b>About the Speaker:</b> Alejandro Artavia.<br>Enthusiastic, results driven iOS Developer with more than 5 years of experience. Loves helping customers take their apps to the next level by applying best practices and leveraging the iOS ecosystem to the fullest."
   },
   {
-    "title": "It was a pleasure to have you! Thanks for joining us, have a great night!",
-    "startTime": "9:50PM",
+    "title": "Let's chill",
+    "startTime": "9:30PM",
     "endTime": "",
-    "venue": ""
+    "venue": "2nd and 3rd floor"
   }
 ]

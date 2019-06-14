@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="top"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -86,8 +86,6 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:isScrollContainer="true"
-        android:measureAllChildren="true"
         app:behavior_overlapTop="20dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -105,9 +103,11 @@
                 android:background="@drawable/round_shape_button_gray"
                 android:paddingStart="60dp"
                 android:paddingEnd="60dp"
+                android:textSize="18sp"
                 android:text="@string/check_in"
+                android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -138,7 +138,8 @@
                 android:layout_marginTop="36dp"
                 android:paddingStart="60dp"
                 android:paddingEnd="60dp"
-                android:drawableEnd="@drawable/ic_outline_location_on_24"
+                android:textSize="18sp"
+                android:drawableEnd="@drawable/ic_location"
                 android:drawablePadding="15dp"
                 android:text="DIRECTIONS"
                 android:textColor="@color/white" />
@@ -150,6 +151,7 @@
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:text="Agenda"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
 
@@ -219,6 +221,8 @@
             android:paddingStart="60dp"
             android:paddingEnd="60dp"
             android:text="@string/check_in"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -239,4 +243,33 @@
             app:srcCompat="@drawable/ic_close_icon" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/scrollMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_gravity="bottom|center"
+        android:orientation="horizontal"
+        android:background="@drawable/round_shape_scroll"
+        android:paddingStart="13dp"
+        android:paddingEnd="13dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SCROLL FOR MORE"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textColor="@color/white" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_right_chevron_ios" />
+    </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>
